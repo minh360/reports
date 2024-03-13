@@ -13,6 +13,39 @@ else {
     localStorage.setItem('time', k)
     localStorage.removeItem('group')
 }
+if(localStorage.getItem('rule')==null){
+  localStorage.setItem('rule',JSON.stringify(['V','M','T','C','A','S'])
+  )
+}
+if(localStorage.getItem('ruleInfor')==null){
+  localStorage.setItem('ruleInfor',JSON.stringify([
+    { 
+      label : 'V',
+      text : 'Việt'
+    },
+    { 
+      label : 'M',
+      text : 'Mã'
+    },
+    { 
+      label : 'T',
+      text : 'Thái'
+    },
+    { 
+      label : 'A',
+      text : 'Ấn'
+    },
+    { 
+      label : 'S',
+      text : 'Singapore'
+    },
+    { 
+      label : 'C',
+      text : 'Cam'
+    },
+  ])
+  )
+}
 </script>
 
 <style lang="scss">
@@ -23,12 +56,12 @@ else {
   .logo{
   font-family: "Madimi One", sans-serif;
   }
-  -moz-user-select: none !important;
-  -webkit-touch-callout: none !important;
-  -webkit-user-select: none !important;
-  -khtml-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
+  -moz-user-select: none ;
+  -webkit-touch-callout: none ;
+  -webkit-user-select: none ;
+  -khtml-user-select: none ;
+  -moz-user-select: none ;
+  -ms-user-select: none ;
+  user-select: none ;
 }
 </style>

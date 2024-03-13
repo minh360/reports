@@ -1,8 +1,8 @@
 <template>
-        <h1 class="w-full text-[45px] flex justify-center text-[green]" >
+        <h1 class="w-full text-[45px] flex justify-center text-[green] cursor-pointer hover:text-[red]" @click="emit('update:dropdown')">
             {{ props.label }}
         </h1>
-        <div class="flex flex-row gap-[130px] h-[400px] ">
+        <div class="flex flex-row gap-[90px] h-[400px] " v-if="props.dropdown=='' ? props.dropdown : true">
             <div class="flex flex-col gap-[25px]">
                 <div>
                     Thẻ :
@@ -10,7 +10,7 @@
                         :value="props.card"
                         @input="emit('update:card', $event.target.value)"
                         type="text" 
-                        class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[80px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
+                        class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                 </div>
                 <div>
                     <input :value="props.numCar"
@@ -60,8 +60,8 @@
 </template>
 <script setup>
 import { defineProps,defineEmits,computed } from 'vue';
-const props = defineProps(['label','car','card','person','numPerson','numCar','totalBuy','typePerson','percent'])
-const emit = defineEmits(['update:car','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent'])
+const props = defineProps(['label','car','card','person','numPerson','numCar','totalBuy','typePerson','percent','index','dropdown'])
+const emit = defineEmits(['update:car','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent','update:dropdown'])
 const pricePerson = computed(()=>{
     return Number(props.person)*Number(props.numPerson)
 })

@@ -17,8 +17,9 @@
     </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref,defineEmits } from "vue";
 import ShowPanel from "./ShowPanel.vue";
+const emit = defineEmits(['done']);
 const card = ref("")
 const car = ref("")
 const numCar = ref("")
@@ -31,18 +32,19 @@ const saveAdd = () => {
     let a = localStorage.getItem('group') ? JSON.parse(localStorage.getItem('group')) : []
     a.push({
         card: card.value,
-        numCar: numCar.value,
-        car: car.value,
-        person: person.value,
-        numPerson: numPerson.value,
-        percent: percent.value,
+        numCar: Number(numCar.value),
+        car: Number(car.value),
+        person: Number(person.value),
+        numPerson: Number(numPerson.value),
+        percent: Number(percent.value),
         typePerson: typePerson.value,
-        totalBuy: totalBuy.value,
-        total: Number(car.value) + (Number(person.value) * Number(numPerson.value)) + Number(percent.value)
+        totalBuy: Number(totalBuy.value),
+        total: Number(car.value) + (Number(person.value) * Number(numPerson.value)) + Number(percent.value),
+        dropdown : false
     })
     const data = JSON.stringify(a)
     localStorage.setItem('group', data)
-    location.reload()
+    emit('done')
 }
 </script>
 <style lang="scss" scoped></style>
