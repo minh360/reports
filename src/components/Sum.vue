@@ -87,7 +87,7 @@ const change = (select, value, index) => {
             break
         case SELECT_ITEM.TOTAL_BUY:
             changeValue.value = true
-            group.value[index].totalBuy = value;
+            group.value[index].totalBuy = Number(value);
             break
         case SELECT_ITEM.DROPDOWN:
             group.value[index].dropdown = !group.value[index].dropdown;
