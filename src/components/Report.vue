@@ -38,7 +38,7 @@
                 </div>
                 <h1 v-if="banle != ''">Bán lẻ = {{ banle }}</h1>
                 <h1 v-if="dacsan != ''">Đặc sản = {{ dacsan }}</h1>
-                <h1>Tổng z = {{ formatNum(lumtien) }}</h1>
+                <h1>Tổng z = {{ lumtien }}</h1>
             </div>
             <button @click="copy(1)"
                 class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none 
@@ -90,7 +90,7 @@ const banle = ref("")
 const dacsan = ref('')
 const sum = ref(0)
 const lumtien = computed(() => {
-    return Number(dacsan.value) + Number(banle.value) + sum.value
+    return formatNum(Number(dacsan.value) + Number(banle.value) + sum.value)
 })
 const copy = num => {
     navigator.clipboard.writeText(num == 1 ? r1.value.innerText : num == 2 ? r2.value.innerText : r3.value.innerText)
