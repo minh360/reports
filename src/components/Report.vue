@@ -146,7 +146,7 @@ onMounted(() => {
     for (let k = 0; k < group.value.length; k++) {
         numCar += group.value[k].numCar
         car += group.value[k].car
-        numPerson += (group.value[k].person == 0 && group.value[k].numPerson == 0? 0 : group.value[k].person)
+        numPerson += (group.value[k].person == 0 || group.value[k].numPerson == 0? 0 : group.value[k].person)
         person += (group.value[k].numPerson * group.value[k].person)
         percent += group.value[k].percent
         total += group.value[k].total
