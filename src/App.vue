@@ -14,7 +14,7 @@ else {
     localStorage.removeItem('group')
 }
 if(localStorage.getItem('rule')==null){
-  localStorage.setItem('rule',JSON.stringify(['V','M','T','C','A','S'])
+  localStorage.setItem('rule',JSON.stringify(['V','M','T'])
   )
 }
 if(localStorage.getItem('ruleInfor')==null){

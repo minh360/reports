@@ -44,6 +44,7 @@
 import { onMounted, ref } from 'vue';
 const ruleInfor = ref(JSON.parse(localStorage.getItem('ruleInfor')))
 const group = ref(JSON.parse(localStorage.getItem('group')))
+const rule = ref(JSON.parse(localStorage.getItem('rule')))
 const groupTq = ref([])
 const r1 = ref(null)
 const mes1 = ref('Copy')
@@ -66,6 +67,9 @@ let report1 = ref([])
 let reportTq = ref([])
 let report2 = ref([])
 onMounted(() => {
+    function customSort(a, b) {
+        return rule.value.indexOf(a.label[0]) - rule.value.indexOf(b.label[0]);
+    }
     for (let z = 0; z < group.value.length; z++) {
         if (group.value[z].person == 0){
             console.log(group.value[z])
@@ -109,6 +113,7 @@ onMounted(() => {
         total += group.value[k].total
     }
     report2.value = {numCar: numCar,car : formatNum(car), numPerson: formatNum(numPerson), person: formatNum(person), percent: formatNum(percent), total: formatNum(total)}
+    report1.value = report1.value.sort(customSort)
     return report1,report2
 })
 
