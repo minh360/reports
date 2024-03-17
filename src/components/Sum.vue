@@ -104,6 +104,9 @@ const deleteGroup = index => {
     group.value.splice(index, 1)
 }
 const saveAdd = () => {
+    for(let i=0;i<group.value.length;i++){
+        group.value[i].dropdown = false
+    }
     group.value = JSON.stringify(group.value)
     localStorage.setItem('group', group.value)
     group.value = JSON.parse(localStorage.getItem('group'))
