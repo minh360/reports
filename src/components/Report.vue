@@ -36,8 +36,8 @@
                 <div v-else>
                     <h1>Không có đoàn</h1>
                 </div>
-                <h1 v-if="banle != ''">Bán lẻ = {{ banle }}</h1>
-                <h1 v-if="dacsan != ''">Đặc sản = {{ dacsan }}</h1>
+                <h1 v-if="banle != ''">Bán lẻ = {{ formatNum(banle) }}</h1>
+                <h1 v-if="dacsan != ''">Đặc sản = {{ formatNum(dacsan) }}</h1>
                 <h1>Tổng z = {{ lumtien }}</h1>
             </div>
             <button @click="copy(1)"
