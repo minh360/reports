@@ -8,15 +8,13 @@
                     <h1>Đặc sản :</h1>
                 </div>
                 <div class="flex flex-col  gap-[20px]">
-                <input v-model="banle" type="number"
-                    class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+                    <input v-model="banle" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
-                <input v-model="dacsan" type="number"
-                    class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+                    <input v-model="dacsan" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
-            </div>
+                </div>
             </div>
             <div class="w-[20vw] h-1 mx-auto my-4 bg-black border-0 rounded"></div>
             <div ref="r1">
@@ -32,23 +30,22 @@
                             {{ item.car }} xe {{ item.label }} / tham quan / = {{ item.totalBuy }}
                         </h1>
                     </div>
+                    <h1 v-if="banle != ''">Bán lẻ = {{ formatNum(banle) }}</h1>
+                    <h1 v-if="dacsan != ''">Đặc sản = {{ formatNum(dacsan) }}</h1>
+                    <h1>Tổng z = {{ lumtien }}</h1>
                 </div>
                 <div v-else>
                     <h1>Không có đoàn</h1>
                 </div>
-                <h1 v-if="banle != ''">Bán lẻ = {{ formatNum(banle) }}</h1>
-                <h1 v-if="dacsan != ''">Đặc sản = {{ formatNum(dacsan) }}</h1>
-                <h1>Tổng z = {{ lumtien }}</h1>
+                
             </div>
-            <button @click="copy(1)"
-                class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none 
+            <button @click="copy(1)" class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none 
                 hover:ring hover:border-blue-300">
-                {{mes1 }}
+                {{ mes1 }}
             </button>
         </div>
         <div class="flex-grow gap-[20px]">
-            <div>Chi c.k : <input v-model="chick" type="number"
-                    class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+            <div>Chi c.k : <input v-model="chick" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
             </div>
@@ -56,23 +53,20 @@
             <div ref="r2">
                 {{ date }}
                 <h1>Chi đầu xe + người + phần trăm hướng dẫn</h1>
-                <div class="bg-gray-300 pl-[30px] py-[30px] w-[500px]">
-                    <h1>{{ report2.numCar }} xe = {{ report2.car }}</h1>
-                    <h1>{{ report2.numPerson }} người = {{ report2.person }}</h1>
-                    <h1>Phần trăm = {{ report2.percent }}</h1>
-                    <h1>Tổng chi = {{ report2.total }}</h1>
-                    <h1>( chi mặt {{ chimat }} ; <h1 v-if="chick > 0">chi c.k {{ chick }}</h1>)</h1>
-                </div>
-                <h1>Tiền thu về {{ lumtien }} dư xx</h1>
+                <h1>{{ report2.numCar }} xe = {{ report2.car }}</h1>
+                <h1>{{ report2.numPerson }} người = {{ report2.person }}</h1>
+                <h1>Phần trăm = {{ report2.percent }}</h1>
+                <h1>Tổng chi = {{ report2.total }}</h1>
+                <h1>( chi mặt {{  formatNum(total - chick) }} <h1 v-if="chick > 0"> ; chi c.k {{ formatNum(chick) }}</h1>)</h1>
+                <h1>Tiền thu về {{ lumtien }} dư </h1>
                 <h1>Mặt = </h1>
-                <h1>Quẹt thẻ  = </h1>
+                <h1>Quẹt thẻ = </h1>
                 <h1>Chuyển khoản = </h1>
             </div>
             <div class="flex flex-row gap-[50px]">
-                <button @click="copy(2)"
-                    class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none hover:ring 
+                <button @click="copy(2)" class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none hover:ring 
                     hover:border-blue-300">{{
-                    mes2 }}</button>
+                        mes2 }}</button>
             </div>
         </div>
     </div>
@@ -93,11 +87,9 @@ const banle = ref("")
 const dacsan = ref('')
 const sum = ref(0)
 const chick = ref(0)
+const total = ref(0)
 const lumtien = computed(() => {
     return formatNum(Number(dacsan.value) + Number(banle.value) + sum.value)
-})
-const chimat = computed(() => {
-    return formatNum(Number(lumtien.value)) - formatNum(Number(chick.value))
 })
 const copy = num => {
     navigator.clipboard.writeText(num == 1 ? r1.value.innerText : r2.value.innerText)
@@ -148,16 +140,17 @@ onMounted(() => {
     let numPerson = 0
     let person = 0
     let percent = 0
-    let total = 0
+    let totalz = 0
     for (let k = 0; k < group.value.length; k++) {
         numCar += group.value[k].numCar
         car += group.value[k].car
-        numPerson += (group.value[k].person == 0 || group.value[k].numPerson == 0? 0 : group.value[k].person)
+        numPerson += (group.value[k].person == 0 || group.value[k].numPerson == 0 ? 0 : group.value[k].person)
         person += (group.value[k].numPerson * group.value[k].person)
         percent += group.value[k].percent
-        total += group.value[k].total
+        totalz += group.value[k].total
     }
-    report2.value = { numCar: numCar, car: formatNum(car), numPerson: formatNum(numPerson), person: formatNum(person), percent: formatNum(percent), total: formatNum(total) }
+    total.value = totalz
+    report2.value = { numCar: numCar, car: formatNum(car), numPerson: formatNum(numPerson), person: formatNum(person), percent: formatNum(percent), total:  formatNum(totalz) }
     report1.value = report1.value.sort(customSort)
     return report1, report2, sum
 })
