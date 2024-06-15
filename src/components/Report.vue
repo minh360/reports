@@ -44,7 +44,7 @@
                 {{ mes1 }}
             </button>
         </div>
-        <div class="flex-grow gap-[20px]">
+        <div class="flex-grow gap-[20px]" v-if="group != '' && groupTq != []">
             <div>Chi c.k : <input v-model="chick" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
@@ -57,7 +57,7 @@
                 <h1>{{ report2.numPerson }} người = {{ report2.person }}</h1>
                 <h1>Phần trăm = {{ report2.percent }}</h1>
                 <h1>Tổng chi = {{ report2.total }}</h1>
-                <h1>( chi mặt {{  formatNum(total - chick) }} <h1 v-if="chick > 0"> ; chi c.k {{ formatNum(chick) }}</h1>)</h1>
+                <h1>( chi mặt {{  formatNum(total - chick) }} <div v-if="chick > 0"> ; chi c.k {{ formatNum(chick) }}</div>)</h1>
                 <h1>Tiền thu về {{ lumtien }} dư </h1>
                 <h1>Mặt = </h1>
                 <h1>Quẹt thẻ = </h1>
