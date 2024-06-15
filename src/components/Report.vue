@@ -57,7 +57,7 @@
                 <h1>{{ report2.numPerson }} người = {{ report2.person }}</h1>
                 <h1>Phần trăm = {{ report2.percent }}</h1>
                 <h1>Tổng chi = {{ report2.total }}</h1>
-                <h1>( chi mặt {{  formatNum(total - chick) }} <div v-if="chick > 0"> ; chi c.k {{ formatNum(chick) }}</div>)</h1>
+                <h1>( chi mặt {{  formatNum(total - chick) }} <span v-if="chick > 0"> ; chi c.k {{ formatNum(chick) }}</span>)</h1>
                 <h1>Tiền thu về {{ lumtien }} dư </h1>
                 <h1>Mặt = </h1>
                 <h1>Quẹt thẻ = </h1>
