@@ -46,28 +46,33 @@
                 {{mes1 }}
             </button>
         </div>
-        <div class="flex-grow">
+        <div class="flex-grow gap-[20px]">
+            <div>Chi c.k : <input v-model="chick" type="number"
+                    class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+                    [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
+                    focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
+            </div>
+            <div class="w-[20vw] h-1 mx-auto my-4 bg-black border-0 rounded"></div>
             <div ref="r2">
                 {{ date }}
-                <h1>- Chi đầu người + đầu xe + phần trăm :</h1>
-                <div class="bg-gray-300 pl-[30px] py-[30px] w-[500px]" ref="r3">
+                <h1>Chi đầu xe + người + phần trăm hướng dẫn</h1>
+                <div class="bg-gray-300 pl-[30px] py-[30px] w-[500px]">
                     <h1>{{ report2.numCar }} xe = {{ report2.car }}</h1>
                     <h1>{{ report2.numPerson }} người = {{ report2.person }}</h1>
                     <h1>Phần trăm = {{ report2.percent }}</h1>
                     <h1>Tổng chi = {{ report2.total }}</h1>
+                    <h1>( chi mặt {{ chimat }} ; <h1 v-if="chick > 0">chi c.k {{ chick }}</h1>)</h1>
                 </div>
-                <h1>- Tiền thu về :</h1>
-                <h1>Tiền Việt = </h1>
+                <h1>Tiền thu về {{ lumtien }} dư xx</h1>
+                <h1>Mặt = </h1>
+                <h1>Quẹt thẻ  = </h1>
+                <h1>Chuyển khoản = </h1>
             </div>
             <div class="flex flex-row gap-[50px]">
                 <button @click="copy(2)"
                     class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none hover:ring 
                     hover:border-blue-300">{{
                     mes2 }}</button>
-                <button @click="copy(3)"
-                    class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none hover:ring 
-                    hover:border-blue-300">{{
-                    mes3 }}</button>
             </div>
         </div>
     </div>
@@ -82,21 +87,22 @@ const r1 = ref(null)
 const mes1 = ref('Copy')
 const r2 = ref(null)
 const mes2 = ref('Copy')
-const r3 = ref(null)
-const mes3 = ref('Copy mục nhỏ 1')
 const today = new Date()
 const date = String(today.getDate()) + '/' + String(today.getMonth() + 1) + '/' + String(today.getFullYear()) + " :"
 const banle = ref("")
 const dacsan = ref('')
 const sum = ref(0)
+const chick = ref(0)
 const lumtien = computed(() => {
     return formatNum(Number(dacsan.value) + Number(banle.value) + sum.value)
 })
+const chimat = computed(() => {
+    return formatNum(Number(lumtien.value)) - formatNum(Number(chick.value))
+})
 const copy = num => {
-    navigator.clipboard.writeText(num == 1 ? r1.value.innerText : num == 2 ? r2.value.innerText : r3.value.innerText)
+    navigator.clipboard.writeText(num == 1 ? r1.value.innerText : r2.value.innerText)
     mes1.value = num == 1 ? "Đã copy" : "Copy"
     mes2.value = num == 2 ? 'Đã copy' : 'Copy'
-    mes3.value = num == 3 ? 'Đã copy' : 'Copy mục nhỏ 1'
 }
 const formatNum = num => {
     return num.toLocaleString()
