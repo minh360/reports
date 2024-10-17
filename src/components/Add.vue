@@ -9,9 +9,9 @@
         :type-person="typePerson" @update:type-person="typePerson = $event" 
         :total-buy="totalBuy" @update:total-buy="totalBuy = $event" :label="'Thêm đoàn'">
         <div class="flex flex-row justify-end w-100"
-            v-if="card != '' && car != '' && percent != '' && numCar != '' && person != '' && numPerson != '' && totalBuy != '' && typePerson != ''">
+            v-if="card != '' && car != '' && numCar != '' && person != '' && numPerson != '' && totalBuy != '' && typePerson != ''">
             <button type="button" @click="saveAdd()"
-                class="text-[25px] mt-[2px] w-[200px] text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2">Lưu</button>
+                class="text-[25px] mt-[-100px] w-[200px] text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2">Lưu</button>
         </div>
     </ShowPanel>
     </div>
