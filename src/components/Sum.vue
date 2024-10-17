@@ -13,6 +13,7 @@
                 me-2 mb-2">Lưu lại</button>
         </div>
         <div v-for="(item, index) in group" :key="index">
+            <div> 
             <ShowPanel :label="'Đoàn ' + (index + 1) + ':\t\t\t'+ formatNum(item.totalBuy)" :dropdown="item.dropdown"
                 @update:dropdown="change(SELECT_ITEM.DROPDOWN, value, index)" :car="item.car"
                 @update:car="change(SELECT_ITEM.CAR, $event, index)" @update:card="change(SELECT_ITEM.CARD, $event, index)"
@@ -24,6 +25,7 @@
                 :total-buy="item.totalBuy" @update:total-buy="change(SELECT_ITEM.TOTAL_BUY, $event, index)"
                 :index="index">
             </ShowPanel>
+            </div>
             <div class="flex flex-row justify-end w-100 mr-[30px]" v-show="item.dropdown">
                 <button type="button" @click="deleteGroup(index)"
                     class="text-[25px] mt-[10px] w-[200px] text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2">
