@@ -5,7 +5,7 @@
             <div class="flex flex-row w-full justify-between">
                 <div class="flex flex-col  gap-[20px]">
                     <h1>Bán lẻ :</h1>
-                    <h1>Đặc sản :</h1>
+                    <h1>Nước + Kem :</h1>
                 </div>
                 <div class="flex flex-col  gap-[20px]">
                     <input v-model="banle" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
