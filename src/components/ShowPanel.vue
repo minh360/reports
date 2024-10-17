@@ -32,7 +32,7 @@
                     <div class="ml-[20px]">{{ pricePerson }}</div>
                 </div>
                 <div class='flex flex-col gap-[25px]'>
-                    <p>Phần trăm : {{ percent }}</p>
+                    <p>Phần trăm : {{ props.percent }} </p>
                     <p>Tx : <input v-model="percentTx" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[120px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     </p>
@@ -68,14 +68,16 @@
 import { defineProps,defineEmits,computed,ref } from 'vue';
 const props = defineProps(['label','car','card','person','numPerson','numCar','totalBuy','typePerson','percent','index','dropdown'])
 const emit = defineEmits(['update:car','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent','update:dropdown'])
-const percentTx = ref('')
-const percentHd = ref('')
-const percentTd = ref('')
-props.percent = computed(()=>{
-    return Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value)
-})
+
+const percentTx = ref(0)
+const percentHd = ref(0)
+const percentTd = ref(0)
+
 const percent = computed (()=>{
     return Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value)
+})
+watch(percent,(now,last)=>{
+    props.percent = now
 })
 const pricePerson = computed(()=>{
     return Number(props.person)*Number(props.numPerson)
