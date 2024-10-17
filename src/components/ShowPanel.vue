@@ -71,9 +71,11 @@ const emit = defineEmits(['update:car','update:card','update:person','update:num
 const percentTx = ref('')
 const percentHd = ref('')
 const percentTd = ref('')
+props.percent = computed(()=>{
+    return Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value)
+})
 const percent = computed (()=>{
-    props.percent.value = Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value)
-    return props.percent.value
+    return Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value)
 })
 const pricePerson = computed(()=>{
     return Number(props.person)*Number(props.numPerson)
