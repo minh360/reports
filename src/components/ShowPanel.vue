@@ -65,7 +65,7 @@
         <slot></slot>
 </template>
 <script setup>
-import { defineProps,defineEmits,computed } from 'vue';
+import { defineProps,defineEmits,computed,ref } from 'vue';
 const props = defineProps(['label','car','card','person','numPerson','numCar','totalBuy','typePerson','percent','index','dropdown'])
 const emit = defineEmits(['update:car','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent','update:dropdown'])
 const percentTx = ref('')
