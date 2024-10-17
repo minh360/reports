@@ -74,10 +74,9 @@ const percentHd = ref(0)
 const percentTd = ref(0)
 
 const percent = computed (()=>{
-    return Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value)
-})
-watch(percent,(now,last)=>{
-    props.percent = now
+    const newPercent = Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value)
+    emit('update:percent', newPercent)
+    return newPercent
 })
 const pricePerson = computed(()=>{
     return Number(props.person)*Number(props.numPerson)
