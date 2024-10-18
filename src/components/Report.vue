@@ -76,7 +76,6 @@ const date = String(today.getDate()) + '/' + String(today.getMonth() + 1) + '/' 
 const banle = ref("")
 const dacsan = ref('')
 const sum = ref(0)
-const chick = ref(0)
 const total = ref(0)
 const lumtien = computed(() => {
     return formatNum(Number(dacsan.value) + Number(banle.value) + sum.value)
