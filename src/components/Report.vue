@@ -45,11 +45,6 @@
             </button>
         </div>
         <div class="flex-grow gap-[20px]" v-if="group != '' && groupTq != []">
-            <div>Chi c.k : <input v-model="chick" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
-                    [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
-                    focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
-            </div>
-            <div class="w-[20vw] h-1 mx-auto my-4 bg-black border-0 rounded"></div>
             <div ref="r2">
                 {{ date }}
                 <h1>Chi đầu xe + người + phần trăm hướng dẫn</h1>
@@ -57,11 +52,6 @@
                 <h1>{{ report2.numPerson }} người = {{ report2.person }}</h1>
                 <h1>Phần trăm = {{ report2.percent }}</h1>
                 <h1>Tổng chi = {{ report2.total }}</h1>
-                <h1>( chi mặt {{  formatNum(total - chick) }} <span v-if="chick > 0"> ; chi c.k {{ formatNum(chick) }}</span>)</h1>
-                <h1>Tiền thu về {{ lumtien }} dư </h1>
-                <h1>Mặt = </h1>
-                <h1>Quẹt thẻ = </h1>
-                <h1>Chuyển khoản = </h1>
             </div>
             <div class="flex flex-row gap-[50px]">
                 <button @click="copy(2)" class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none hover:ring 
