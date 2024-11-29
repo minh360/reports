@@ -109,7 +109,7 @@ onMounted(() => {
         for (let j = 0; j < group.value.length; j++) {
             if (ruleInfor.value[i].label == group.value[j].typePerson && group.value[j].person != 0) {
                 car += group.value[j].numCar
-                person += group.value[j].person
+                person += Number(group.value[j].person)
                 totalBuy += group.value[j].totalBuy
                 sum.value += group.value[j].totalBuy
             }
@@ -133,7 +133,7 @@ onMounted(() => {
     for (let k = 0; k < group.value.length; k++) {
         numCar += group.value[k].numCar
         car += group.value[k].car
-        numPerson += (group.value[k].person == 0 || group.value[k].numPerson == 0 ? 0 : group.value[k].person)
+        numPerson += (Number(group.value[k].person) == 0 || group.value[k].numPerson == 0 ? 0 : Number(group.value[k].person))
         person += (group.value[k].numPerson * group.value[k].person)
         percent += group.value[k].percent
         totalz += group.value[k].total
