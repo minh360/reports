@@ -31,7 +31,7 @@
                         </h1>
                     </div>
                     <h1 v-if="banle != ''">Bán lẻ = {{ formatNum(banle) }}</h1>
-                    <h1 v-if="dacsan != ''">Đặc sản = {{ formatNum(dacsan) }}</h1>
+                    <h1 v-if="dacsan != ''">Nước + Kem = {{ formatNum(dacsan) }}</h1>
                     <h1>Tổng z = {{ lumtien }}</h1>
                 </div>
                 <div v-else>
