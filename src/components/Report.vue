@@ -45,9 +45,9 @@
             </button>
         </div>
         <div class="flex-grow gap-[20px]" v-if="group != '' && groupTq != []">
-            <h1 v-if="report3.carS">{{ report3.carS }} nhỏ = {{ report3.carS*CAR.CAR_S }}</h1>
-            <h1 v-if="report3.carM">{{ report3.carM }} trung = {{ report3.carM*CAR.CAR_M }}</h1>
-            <h1 v-if="report3.carL">{{ report3.carL }} lớn = {{ report3.carL*CAR.CAR_L }}</h1>
+            <h1 v-if="report3.carS && report3.carS == 0">{{ report3.carS }} nhỏ = {{ report3.carS*CAR.CAR_S }}</h1>
+            <h1 v-if="report3.carM && report3.carM == 0">{{ report3.carM }} trung = {{ report3.carM*CAR.CAR_M }}</h1>
+            <h1 v-if="report3.carL && report3.carL == 0">{{ report3.carL }} lớn = {{ report3.carL*CAR.CAR_L }}</h1>
             <div ref="r2">
                 {{ date }}
                 <h1>Chi đầu xe + người + phần trăm hướng dẫn</h1>
@@ -146,9 +146,9 @@ onMounted(() => {
         car += (Number(group.value[k].carS*CAR.CAR_S)+Number(group.value[k].carM*CAR.CAR_M)+Number(group.value[k].carL*CAR.CAR_L))
         numCar += (Number(group.value[k].carS)+Number(group.value[k].carM)+Number(group.value[k].carL))
         numPerson += (Number(group.value[k].person) == 0 || group.value[k].numPerson == 0 ? 0 : Number(group.value[k].person))
-        carS += group.value[k].carS
-        carM += group.value[k].carM
-        carL += group.value[k].carL
+        carS += Number(group.value[k].carS)
+        carM += Number(group.value[k].carM)
+        carL += Number(group.value[k].carL)
         person += (group.value[k].numPerson * group.value[k].person)
         percent += group.value[k].percent
         totalz += group.value[k].total
