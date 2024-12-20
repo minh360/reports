@@ -117,7 +117,7 @@ onMounted(() => {
         let totalBuy = 0
         for (let j = 0; j < group.value.length; j++) {
             if (ruleInfor.value[i].label == group.value[j].typePerson && group.value[j].person != 0) {
-                car += (group.value[j].carS+group.value[j].carM+group.value[j].carL)
+                car += (Number(group.value[j].carS)+Number(group.value[j].carM)+Number(group.value[j].carL))
                 person += Number(group.value[j].person)
                 totalBuy += group.value[j].totalBuy
                 sum.value += group.value[j].totalBuy
@@ -125,7 +125,7 @@ onMounted(() => {
         }
         for (let s = 0; s < groupTq.value.length; s++) {
             if (ruleInfor.value[i].label == groupTq.value[s].typePerson) {
-                carTq += (group.value[s].carS+group.value[s].carM+group.value[s].carL)
+                carTq += (Number(group.value[s].carS)+Number(group.value[s].carM)+Number(group.value[s].carL))
                 totalBuyTq += groupTq.value[s].totalBuy
                 sum.value += groupTq.value[s].totalBuy
             }
@@ -143,8 +143,8 @@ onMounted(() => {
     let percent = 0
     let totalz = 0
     for (let k = 0; k < group.value.length; k++) {
-        car += (group.value[k].carS*CAR.CAR_S+group.value[k].carM*CAR.CAR_M+group.value[k].carL*CAR.CAR_L)
-        numCar += (group.value[k].carS+group.value[k].carM+group.value[k].carL)
+        car += (Number(group.value[k].carS*CAR.CAR_S)+Number(group.value[k].carM*CAR.CAR_M)+Number(group.value[k].carL*CAR.CAR_L))
+        numCar += (Number(group.value[k].carS)+Number(group.value[k].carM)+Number(group.value[k].carL))
         numPerson += (Number(group.value[k].person) == 0 || group.value[k].numPerson == 0 ? 0 : Number(group.value[k].person))
         carS += group.value[k].carS
         carM += group.value[k].carM

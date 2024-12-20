@@ -65,15 +65,15 @@ const change = (select, value, index) => {
         switch (select) {
             case SELECT_ITEM.CAR_S:
             changeValue.value = true
-            group.value[index].carS = value
+            group.value[index].carS = (value ? value : 0)
             break
         case SELECT_ITEM.CAR_M:
             changeValue.value = true
-            group.value[index].carM = value
+            group.value[index].carM = (value ? value : 0)
             break
         case SELECT_ITEM.CAR_L:
             changeValue.value = true
-            group.value[index].carL = value
+            group.value[index].carL = (value ? value : 0)
             break
         case SELECT_ITEM.CARD:
             changeValue.value = true
