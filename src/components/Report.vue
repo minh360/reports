@@ -117,7 +117,7 @@ onMounted(() => {
         let totalBuy = 0
         for (let j = 0; j < group.value.length; j++) {
             if (ruleInfor.value[i].label == group.value[j].typePerson && group.value[j].person != 0) {
-                car += (group.value[j].carS*CAR.CAR_S+group.value[j].carM*CAR.CAR_M+group.value[j].carL*CAR.CAR_L)
+                car += (group.value[j].carS+group.value[j].carM+group.value[j].carL)
                 person += Number(group.value[j].person)
                 totalBuy += group.value[j].totalBuy
                 sum.value += group.value[j].totalBuy
@@ -125,7 +125,7 @@ onMounted(() => {
         }
         for (let s = 0; s < groupTq.value.length; s++) {
             if (ruleInfor.value[i].label == groupTq.value[s].typePerson) {
-                carTq += (group.value[s].carS*CAR.CAR_S+group.value[s].carM*CAR.CAR_M+group.value[s].carL*CAR.CAR_L)
+                carTq += (group.value[s].carS+group.value[s].carM+group.value[s].carL)
                 totalBuyTq += groupTq.value[s].totalBuy
                 sum.value += groupTq.value[s].totalBuy
             }
