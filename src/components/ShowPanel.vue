@@ -79,7 +79,11 @@ const emit = defineEmits(['update:carS','update:carM','update:carL','update:card
 const percentTx = ref('')
 const percentHd = ref('')
 const percentTd = ref('')
-
+const CAR = {
+    CAR_S : 50,
+    CAR_M : 70,
+    CAR_L : 100
+}
 const percent = computed (()=>{
     const newPercent = Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value)
     emit('update:percent', newPercent)
@@ -89,7 +93,7 @@ const pricePerson = computed(()=>{
     return Number(props.person)*Number(props.numPerson)
 })
 const total = computed(() => {
-    return Number(props.car) + Number(props.person)*Number(props.numPerson) + percent.value
+    return Number(props.carS*CAR.CAR_S)+Number(props.carM*CAR.CAR_M)+Number(props.carL*CAR.CAR_L) + Number(props.person)*Number(props.numPerson) + percent.value
 })
 </script>
 <style>
