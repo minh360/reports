@@ -13,13 +13,20 @@
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                 </div>
                 <div>
-                    <input :value="props.numCar"
-                        @input="emit('update:numCar', $event.target.value)" type="number"
-                        class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-[90px] h-[40px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
-                    Xe :
-                    <input :value="props.car"
-                        @input="emit('update:car', $event.target.value)" type="number"
-                        class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[90px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
+                    <span>Xe :</span>
+                    <input :value="props.carS"
+                        @input="emit('update:carS', $event.target.value)" type="number"
+                        class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
+                    <span>Nhỏ</span>
+                    <input :value="props.carM"
+                        @input="emit('update:carM', $event.target.value)" type="number"
+                        class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
+                    <span>Trung</span>
+                    <input :value="props.carL"
+                        @input="emit('update:carL', $event.target.value)" type="number"
+                        class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
+                    <span>Lớn</span>
+
                 </div>
                 <div class="flex items-baseline">
                     <input :value="props.person"
@@ -66,8 +73,8 @@
 </template>
 <script setup>
 import { defineProps,defineEmits,computed,ref } from 'vue';
-const props = defineProps(['label','car','card','person','numPerson','numCar','totalBuy','typePerson','percent','index','dropdown'])
-const emit = defineEmits(['update:car','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent','update:dropdown'])
+const props = defineProps(['label','carS','carM','carL','card','person','numPerson','numCar','totalBuy','typePerson','percent','index','dropdown'])
+const emit = defineEmits(['update:carS','update:carM','update:carL','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent','update:dropdown'])
 
 const percentTx = ref('')
 const percentHd = ref('')

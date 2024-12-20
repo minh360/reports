@@ -15,9 +15,12 @@
         <div v-for="(item, index) in group" :key="index">
             <div> 
             <ShowPanel :label="'Đoàn ' + (index + 1) + ':\t\t\t'+ formatNum(item.totalBuy)" :dropdown="item.dropdown"
-                @update:dropdown="change(SELECT_ITEM.DROPDOWN, value, index)" :car="item.car"
-                @update:car="change(SELECT_ITEM.CAR, $event, index)" @update:card="change(SELECT_ITEM.CARD, $event, index)"
-                :card="item.card" @update:num-car="change(SELECT_ITEM.NUM_CAR, $event, index)" :num-car="item.numCar"
+                @update:dropdown="change(SELECT_ITEM.DROPDOWN, value, index)" 
+                :carS="item.carS" @update:carS="change(SELECT_ITEM.CAR_S, $event, index)" 
+                :carM="item.carM" @update:carM="change(SELECT_ITEM.CAR_M, $event, index)" 
+                :carL="item.carL" @update:carL="change(SELECT_ITEM.CAR_L, $event, index)" 
+                @update:card="change(SELECT_ITEM.CARD, $event, index)"
+                :card="item.card"
                 @update:person="change(SELECT_ITEM.PERSON, $event, index)" :person="item.person"
                 @update:num-person="change(SELECT_ITEM.NUM_PERSON, $event, index)" :num-person="item.numPerson"
                 :percent="item.percent" @update:percent="change(SELECT_ITEM.PERCENT, $event, index)"
@@ -41,8 +44,9 @@
 import { computed, ref } from 'vue'
 import ShowPanel from './ShowPanel.vue';
 const SELECT_ITEM = {
-    CAR: 1,
-    NUM_CAR: 2,
+    CAR_S: 1,
+    CAR_M: 2,
+    CAR_L: 3,
     CARD: 0,
     PERSON: 4,
     NUM_PERSON: 5,
@@ -59,17 +63,21 @@ const changeValue = ref(false)
 const change = (select, value, index) => {
     if (value != "") {
         switch (select) {
-            case SELECT_ITEM.CAR:
+            case SELECT_ITEM.CAR_S:
             changeValue.value = true
-            group.value[index].car = value
+            group.value[index].carS = value
+            break
+        case SELECT_ITEM.CAR_M:
+            changeValue.value = true
+            group.value[index].carM = value
+            break
+        case SELECT_ITEM.CAR_L:
+            changeValue.value = true
+            group.value[index].carL = value
             break
         case SELECT_ITEM.CARD:
             changeValue.value = true
             group.value[index].card = value
-            break
-        case SELECT_ITEM.NUM_CAR:
-            changeValue.value = true
-            group.value[index].numCar = value
             break
         case SELECT_ITEM.PERSON:
             changeValue.value = true

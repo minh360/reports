@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div class="h-[80vh] w-[60vw] border border-8 mx-auto my-auto px-[20px] py-[20px] bg-gray-300 text-[40px] flex flex-col gap-[7px]">
-    <ShowPanel :car="car" @update:car="car = $event" @update:card="card = $event" :card="card"
+    <ShowPanel :carS="carS" @update:carS="carS = $event" :carM="carM" @update:carM="carM = $event" :carL="carL" @update:carL="carL = $event" @update:card="card = $event" :card="card"
         @update:num-car="numCar = $event" :num-car="numCar"
          @update:person="person = $event" :person="person" 
          @update:num-person="numPerson = $event" :num-person="numPerson" 
@@ -21,8 +21,9 @@ import { ref,defineEmits } from "vue";
 import ShowPanel from "./ShowPanel.vue";
 const emit = defineEmits(['done']);
 const card = ref("")
-const car = ref("")
-const numCar = ref("")
+const carS = ref("")
+const carM = ref("")
+const carL = ref("")
 const person = ref("")
 const numPerson = ref(10)
 const percent = ref("")
@@ -32,8 +33,9 @@ const saveAdd = () => {
     let a = localStorage.getItem('group') ? JSON.parse(localStorage.getItem('group')) : []
     a.push({
         card: card.value,
-        numCar: Number(numCar.value),
-        car: Number(car.value),
+        carS: Number(carS.value),
+        carM: Number(carM.value),
+        carL: Number(carL.value),
         person: Number(person.value),
         numPerson: Number(numPerson.value),
         percent: Number(percent.value),

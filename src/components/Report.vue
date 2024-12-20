@@ -45,10 +45,14 @@
             </button>
         </div>
         <div class="flex-grow gap-[20px]" v-if="group != '' && groupTq != []">
+            <h1>{{ report3.carS }} nhỏ = {{ report3.carS*CAR.CAR_S }}</h1>
+            <h1>{{ report3.carM }} trung = {{ report3.carM*CAR.CAR_M }}</h1>
+            <h1>{{ report3.carL }} lớn = {{ report3.carL*CAR.CAR_L }}</h1>
             <div ref="r2">
                 {{ date }}
                 <h1>Chi đầu xe + người + phần trăm hướng dẫn</h1>
                 <h1>{{ report2.numCar }} xe = {{ report2.car }}</h1>
+                <h1>{{ report3.carS }} nhỏ = {{ report3.carS*CAR.CAR_S }}</h1>
                 <h1>{{ report2.numPerson }} người = {{ report2.person }}</h1>
                 <h1>Phần trăm = {{ report2.percent }}</h1>
                 <h1>Tổng chi = {{ report2.total }}</h1>
@@ -66,6 +70,11 @@ import { onMounted, ref, computed } from 'vue';
 const ruleInfor = ref(JSON.parse(localStorage.getItem('ruleInfor')))
 const group = ref(JSON.parse(localStorage.getItem('group')))
 const rule = ref(JSON.parse(localStorage.getItem('rule')))
+const CAR = {
+    CAR_S : 50,
+    CAR_M : 70,
+    CAR_L : 100
+}
 const groupTq = ref([])
 const r1 = ref(null)
 const mes1 = ref('Copy')
@@ -91,9 +100,10 @@ const formatNum = num => {
 let report1 = ref([])
 let reportTq = ref([])
 let report2 = ref([])
+let report3 = ref([])
 onMounted(() => {
     function customSort(a, b) {
-        return rule.value.indexOf(a.label[0]) - rule.value.indexOf(b.label[0]);
+        return rule.value.indexOf(a.totalBuy) - rule.value.indexOf(b.totalBuy);
     }
     for (let z = 0; z < group.value.length; z++) {
         if (group.value[z].person == 0) {
@@ -108,7 +118,7 @@ onMounted(() => {
         let totalBuy = 0
         for (let j = 0; j < group.value.length; j++) {
             if (ruleInfor.value[i].label == group.value[j].typePerson && group.value[j].person != 0) {
-                car += group.value[j].numCar
+                car += (group.value[j].carS*CAR.CAR_S+group.value[j].carM*CAR.CAR_M+group.value[j].carL*CAR.CAR_L)
                 person += Number(group.value[j].person)
                 totalBuy += group.value[j].totalBuy
                 sum.value += group.value[j].totalBuy
@@ -116,7 +126,7 @@ onMounted(() => {
         }
         for (let s = 0; s < groupTq.value.length; s++) {
             if (ruleInfor.value[i].label == groupTq.value[s].typePerson) {
-                carTq += groupTq.value[s].numCar
+                carTq += (group.value[j].carS*CAR.CAR_S+group.value[j].carM*CAR.CAR_M+group.value[j].carL*CAR.CAR_L)
                 totalBuyTq += groupTq.value[s].totalBuy
                 sum.value += groupTq.value[s].totalBuy
             }
@@ -126,14 +136,20 @@ onMounted(() => {
     }
     let numCar = 0
     let car = 0
+    let carS = 0
+    let carM = 0
+    let carL = 0
     let numPerson = 0
     let person = 0
     let percent = 0
     let totalz = 0
     for (let k = 0; k < group.value.length; k++) {
-        numCar += group.value[k].numCar
-        car += group.value[k].car
+        numCar += (group.value[j].carS*CAR.CAR_S+group.value[j].carM*CAR.CAR_M+group.value[j].carL*CAR.CAR_L)
+        car += (group.value[j].carS+group.value[j].carM+group.value[j].carL)
         numPerson += (Number(group.value[k].person) == 0 || group.value[k].numPerson == 0 ? 0 : Number(group.value[k].person))
+        carS += group.value[j].carS
+        carM += group.value[j].carM
+        carL += group.value[j].carL
         person += (group.value[k].numPerson * group.value[k].person)
         percent += group.value[k].percent
         totalz += group.value[k].total
@@ -141,7 +157,8 @@ onMounted(() => {
     total.value = totalz
     report2.value = { numCar: numCar, car: formatNum(car), numPerson: formatNum(numPerson), person: formatNum(person), percent: formatNum(percent), total:  formatNum(totalz) }
     report1.value = report1.value.sort(customSort)
-    return report1, report2, sum
+    report3.value = { carS : carS, carM : carM, carL : carL}
+    return report1, report2, sum, report3
 })
 
 </script>
