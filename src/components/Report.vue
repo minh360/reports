@@ -144,12 +144,12 @@ onMounted(() => {
     let percent = 0
     let totalz = 0
     for (let k = 0; k < group.value.length; k++) {
-        numCar += (group.value[j].carS*CAR.CAR_S+group.value[j].carM*CAR.CAR_M+group.value[j].carL*CAR.CAR_L)
-        car += (group.value[j].carS+group.value[j].carM+group.value[j].carL)
+        numCar += (group.value[k].carS*CAR.CAR_S+group.value[k].carM*CAR.CAR_M+group.value[k].carL*CAR.CAR_L)
+        car += (group.value[k].carS+group.value[j].carM+group.value[k].carL)
         numPerson += (Number(group.value[k].person) == 0 || group.value[k].numPerson == 0 ? 0 : Number(group.value[k].person))
-        carS += group.value[j].carS
-        carM += group.value[j].carM
-        carL += group.value[j].carL
+        carS += group.value[k].carS
+        carM += group.value[k].carM
+        carL += group.value[k].carL
         person += (group.value[k].numPerson * group.value[k].person)
         percent += group.value[k].percent
         totalz += group.value[k].total

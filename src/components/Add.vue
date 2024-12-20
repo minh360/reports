@@ -2,7 +2,6 @@
 <template>
     <div class="h-[80vh] w-[60vw] border border-8 mx-auto my-auto px-[20px] py-[20px] bg-gray-300 text-[40px] flex flex-col gap-[7px]">
     <ShowPanel :carS="carS" @update:carS="carS = $event" :carM="carM" @update:carM="carM = $event" :carL="carL" @update:carL="carL = $event" @update:card="card = $event" :card="card"
-        @update:num-car="numCar = $event" :num-car="numCar"
          @update:person="person = $event" :person="person" 
          @update:num-person="numPerson = $event" :num-person="numPerson" 
          :percent="percent"  @update:percent="percent = $event"
@@ -29,6 +28,11 @@ const numPerson = ref(10)
 const percent = ref("")
 const typePerson = ref("")
 const totalBuy = ref("")
+const CAR = {
+    CAR_S : 50,
+    CAR_M : 70,
+    CAR_L : 100
+}
 const saveAdd = () => {
     let a = localStorage.getItem('group') ? JSON.parse(localStorage.getItem('group')) : []
     a.push({
@@ -41,7 +45,7 @@ const saveAdd = () => {
         percent: Number(percent.value),
         typePerson: typePerson.value,
         totalBuy: Number(totalBuy.value),
-        total: Number(car.value) + (Number(person.value) * Number(numPerson.value)) + Number(percent.value),
+        total: Number(carS.value*CAR.CAR_S)+Number(carM.value*CAR.CAR_M)+Number(carL.value*CAR.CAR_L) + (Number(person.value) * Number(numPerson.value)) + Number(percent.value),
         dropdown : false
     })
     const data = JSON.stringify(a)
