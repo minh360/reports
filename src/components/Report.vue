@@ -145,7 +145,7 @@ onMounted(() => {
     let totalz = 0
     for (let k = 0; k < group.value.length; k++) {
         numCar += (group.value[k].carS*CAR.CAR_S+group.value[k].carM*CAR.CAR_M+group.value[k].carL*CAR.CAR_L)
-        car += (group.value[k].carS+group.value[j].carM+group.value[k].carL)
+        car += (group.value[k].carS+group.value[k].carM+group.value[k].carL)
         numPerson += (Number(group.value[k].person) == 0 || group.value[k].numPerson == 0 ? 0 : Number(group.value[k].person))
         carS += group.value[k].carS
         carM += group.value[k].carM
