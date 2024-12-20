@@ -45,7 +45,7 @@ const saveAdd = () => {
         percent: Number(percent.value),
         typePerson: typePerson.value,
         totalBuy: Number(totalBuy.value),
-        total: Number(carS.value*CAR.CAR_S)+Number(carM.value*CAR.CAR_M)+Number(carL.value*CAR.CAR_L) + (Number(person.value) * Number(numPerson.value)) + Number(percent.value),
+        total: Number(carS.value ? carS.value*CAR.CAR_S : 0)+Number(carM.value ? carM.value*CAR.CAR_M : 0)+Number(carL.value ? carL.value*CAR.CAR_L : 0) + (Number(person.value) * Number(numPerson.value)) + Number(percent.value),
         dropdown : false
     })
     const data = JSON.stringify(a)

@@ -45,14 +45,13 @@
             </button>
         </div>
         <div class="flex-grow gap-[20px]" v-if="group != '' && groupTq != []">
-            <h1>{{ report3.carS }} nhỏ = {{ report3.carS*CAR.CAR_S }}</h1>
-            <h1>{{ report3.carM }} trung = {{ report3.carM*CAR.CAR_M }}</h1>
-            <h1>{{ report3.carL }} lớn = {{ report3.carL*CAR.CAR_L }}</h1>
+            <h1 v-if="report3.carS">{{ report3.carS }} nhỏ = {{ report3.carS*CAR.CAR_S }}</h1>
+            <h1 v-if="report3.carM">{{ report3.carM }} trung = {{ report3.carM*CAR.CAR_M }}</h1>
+            <h1 v-if="report3.carL">{{ report3.carL }} lớn = {{ report3.carL*CAR.CAR_L }}</h1>
             <div ref="r2">
                 {{ date }}
                 <h1>Chi đầu xe + người + phần trăm hướng dẫn</h1>
                 <h1>{{ report2.numCar }} xe = {{ report2.car }}</h1>
-                <h1>{{ report3.carS }} nhỏ = {{ report3.carS*CAR.CAR_S }}</h1>
                 <h1>{{ report2.numPerson }} người = {{ report2.person }}</h1>
                 <h1>Phần trăm = {{ report2.percent }}</h1>
                 <h1>Tổng chi = {{ report2.total }}</h1>
