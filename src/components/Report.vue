@@ -126,7 +126,7 @@ onMounted(() => {
         }
         for (let s = 0; s < groupTq.value.length; s++) {
             if (ruleInfor.value[i].label == groupTq.value[s].typePerson) {
-                carTq += (group.value[j].carS*CAR.CAR_S+group.value[j].carM*CAR.CAR_M+group.value[j].carL*CAR.CAR_L)
+                carTq += (group.value[s].carS*CAR.CAR_S+group.value[s].carM*CAR.CAR_M+group.value[s].carL*CAR.CAR_L)
                 totalBuyTq += groupTq.value[s].totalBuy
                 sum.value += groupTq.value[s].totalBuy
             }
