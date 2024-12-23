@@ -6,12 +6,16 @@
                 <div class="flex flex-col  gap-[20px]">
                     <h1>Bán lẻ :</h1>
                     <h1>Nước + Kem :</h1>
+                    <h1>Cà Phê:</h1>
                 </div>
                 <div class="flex flex-col  gap-[20px]">
                     <input v-model="banle" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <input v-model="dacsan" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+                    [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
+                    focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
+                    <input v-model="caphe" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                 </div>
@@ -32,6 +36,7 @@
                     </div>
                     <h1 v-if="banle != ''">Bán lẻ = {{ formatNum(banle) }}</h1>
                     <h1 v-if="dacsan != ''">Nước + Kem = {{ formatNum(dacsan) }}</h1>
+                    <h1 v-if="caphe != ''">Cà Phê = {{ formatNum(caphe) }}</h1>
                     <h1>Tổng z = {{ lumtien }}</h1>
                 </div>
                 <div v-else>
@@ -84,6 +89,7 @@ const today = new Date()
 const date = String(today.getDate()) + '/' + String(today.getMonth() + 1) + '/' + String(today.getFullYear()) + " :"
 const banle = ref("")
 const dacsan = ref('')
+const caphe = ref('')
 const sum = ref(0)
 const total = ref(0)
 const lumtien = computed(() => {
