@@ -93,7 +93,7 @@ const pricePerson = computed(()=>{
     return Number(props.person)*Number(props.numPerson)
 })
 const total = computed(() => {
-    return Number(props.carS*CAR.CAR_S)+Number(props.carM*CAR.CAR_M)+Number(props.carL*CAR.CAR_L) + (Number(props.person)*Number(props.numPerson) + Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value) == 0 ? props.percent : percent.value)
+    return Number(props.carS*CAR.CAR_S)+Number(props.carM*CAR.CAR_M)+Number(props.carL*CAR.CAR_L) + percent.value
 })
 </script>
 <style>
