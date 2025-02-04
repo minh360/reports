@@ -23,7 +23,7 @@
             <div class="w-[20vw] h-1 mx-auto my-4 bg-black border-0 rounded"></div>
             <div ref="r1">
                 {{ date }}
-                <div v-if="group != '' && groupTq != []">
+                <div v-if="group != [] || group">
                     <div v-for="rp in report1" :key="rp">
                         <h1 v-if="rp.car != 0">
                             {{ rp.car }} xe {{ rp.label }} / {{ rp.person }} người / = {{ rp.totalBuy }}
