@@ -91,7 +91,6 @@ const banle = ref("")
 const dacsan = ref('')
 const caphe = ref('')
 const sum = ref(0)
-const total = ref(0)
 const lumtien = computed(() => {
     return formatNum(Number(dacsan.value) + Number(banle.value) + sum.value + Number(caphe.value))
 })
@@ -158,9 +157,8 @@ onMounted(() => {
         carL += Number(group.value[k].carL)
         person += (group.value[k].numPerson * group.value[k].person)
         percent += group.value[k].percent
-        totalz += group.value[k].total
     }
-    total.value = totalz
+    totalz = percent + car + person
     report2.value = { numCar: numCar, car: formatNum(car), numPerson: formatNum(numPerson), person: formatNum(person), percent: formatNum(percent), total:  formatNum(totalz) }
     report1.value = report1.value.sort(customSort)
     report3.value = { carS : carS, carM : carM, carL : carL}
