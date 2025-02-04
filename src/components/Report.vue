@@ -23,7 +23,6 @@
             <div class="w-[20vw] h-1 mx-auto my-4 bg-black border-0 rounded"></div>
             <div ref="r1">
                 {{ date }}
-                <div v-if="group != [] || group">
                     <div v-for="rp in report1" :key="rp">
                         <h1 v-if="rp.car != 0">
                             {{ rp.car }} xe {{ rp.label }} / {{ rp.person }} người / = {{ rp.totalBuy }}
@@ -38,18 +37,13 @@
                     <h1 v-if="dacsan != ''">Nước + Kem = {{ formatNum(dacsan) }}</h1>
                     <h1 v-if="caphe != ''">Cà Phê = {{ formatNum(caphe) }}</h1>
                     <h1>Tổng z = {{ lumtien }}</h1>
-                </div>
-                <div v-else>
-                    <h1>Không có đoàn</h1>
-                </div>
-                
             </div>
             <button @click="copy(1)" class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none 
                 hover:ring hover:border-blue-300">
                 {{ mes1 }}
             </button>
         </div>
-        <div class="flex-grow gap-[20px]" v-if="group != '' && groupTq != []">
+        <div class="flex-grow gap-[20px]">
             <h1 v-if="report3.carS || report3.carS != 0">{{ report3.carS }} nhỏ = {{ report3.carS*CAR.CAR_S }}</h1>
             <h1 v-if="report3.carM || report3.carM != 0">{{ report3.carM }} trung = {{ report3.carM*CAR.CAR_M }}</h1>
             <h1 v-if="report3.carL || report3.carL != 0">{{ report3.carL }} lớn = {{ report3.carL*CAR.CAR_L }}</h1>
