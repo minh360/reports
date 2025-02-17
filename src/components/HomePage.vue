@@ -24,6 +24,9 @@
       <Report v-if="window==WINDOW.REPORTS" />
       <Sum v-if="window==WINDOW.SUM" />
       <Setting v-if="window==WINDOW.SETTING" />
+      <div v-if="window==WINDOW.PLAY">
+        <iframe class="w-full h-full" :src="'https://vxmm.onrender.com/'"></iframe>
+      </div>
   </div>
 </template>
 <script setup>
@@ -37,6 +40,7 @@ const WINDOW= {
   SUM : 1,
   REPORTS : 3,
   SETTING : 4,
+  PLAY : 5
 }
 const window = ref(WINDOW.ADD)
 
