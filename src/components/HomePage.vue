@@ -25,7 +25,7 @@
       <Sum v-if="window==WINDOW.SUM" />
       <Setting v-if="window==WINDOW.SETTING" />
       <div v-if="window==WINDOW.PLAY">
-        <iframe class="w-full h-full" :src="'https://vxmm.onrender.com/'"></iframe>
+        <iframe class="w-[80vw] h-full" :src="'https://vxmm.onrender.com/'"></iframe>
       </div>
   </div>
 </template>
@@ -50,6 +50,7 @@ const menu = ref([
   { label: "Tổng Đoàn", active: false },
   { label: "Báo Cáo", active: false },
   { label: "Cài Đặt", active: false },
+  { label: "Pclay", active: false },
 ]);
 const selectItem = (index) => {
   for (let i = 0; i < menu.value.length; i++) {
