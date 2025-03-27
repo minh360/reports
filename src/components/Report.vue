@@ -7,7 +7,7 @@
                     <h1>Bán lẻ :</h1>
                     <h1>Nước + Kem :</h1>
                     <h1>Cà Phê:</h1>
-                    <h1>hạt Điều:</h1>
+                    <h1>Hạt Điều:</h1>
                 </div>
                 <div class="flex flex-col  gap-[20px]">
                     <input v-model="banle" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
