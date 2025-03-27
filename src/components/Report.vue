@@ -7,6 +7,7 @@
                     <h1>Bán lẻ :</h1>
                     <h1>Nước + Kem :</h1>
                     <h1>Cà Phê:</h1>
+                    <h1>hạt Điều:</h1>
                 </div>
                 <div class="flex flex-col  gap-[20px]">
                     <input v-model="banle" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
@@ -16,6 +17,9 @@
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <input v-model="caphe" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+                    [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
+                    focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
+                    <input v-model="hatdieu" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                 </div>
@@ -36,6 +40,7 @@
                     <h1 v-if="banle != ''">Bán lẻ = {{ formatNum(banle) }}</h1>
                     <h1 v-if="dacsan != ''">Nước + Kem = {{ formatNum(dacsan) }}</h1>
                     <h1 v-if="caphe != ''">Cà Phê = {{ formatNum(caphe) }}</h1>
+                    <h1 v-if="hatdieu != ''">Đặc sản = {{ formatNum(hatdieu) }}</h1>
                     <h1>Tổng z = {{ lumtien }}</h1>
             </div>
             <button @click="copy(1)" class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none 
@@ -84,9 +89,10 @@ const date = String(today.getDate()) + '/' + String(today.getMonth() + 1) + '/' 
 const banle = ref("")
 const dacsan = ref('')
 const caphe = ref('')
+const hatdieu = ref('')
 const sum = ref(0)
 const lumtien = computed(() => {
-    return formatNum(Number(dacsan.value) + Number(banle.value) + sum.value + Number(caphe.value))
+    return formatNum(Number(dacsan.value) + Number(banle.value) + sum.value + Number(caphe.value)+ Number(hatdieu.value))
 })
 const copy = num => {
     navigator.clipboard.writeText(num == 1 ? r1.value.innerText : r2.value.innerText)
