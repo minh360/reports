@@ -49,7 +49,7 @@ const saveAdd = () => {
     if (typePerson == "V"){
         totalCar = Number(carS.value ? carS.value*CAR_V.CAR_S : 0)+Number(carM.value ? carM.value*CAR_V.CAR_M : 0)+Number(carL.value ? carL.value*CAR_V.CAR_L : 0)
     } else {
-        totalCar = Number(carS.value ? Number(props.car7*CAR_NN.CAR_7) + Number(props.car16*CAR_NN.CAR_16) : 0)+Number(carM.value ? Number(props.carM*CAR_NN.CAR_29) : 0)+Number(carL.value ?  Number(props.carL*CAR_NN.CAR_45) : 0)
+        totalCar = Number(carS.value ? Number(car7*CAR_NN.CAR_7) + Number(car16*CAR_NN.CAR_16) : 0)+Number(carM.value ? Number(carM*CAR_NN.CAR_29) : 0)+Number(carL.value ?  Number(carL*CAR_NN.CAR_45) : 0)
     }
     a.push({
         card: card.value,
