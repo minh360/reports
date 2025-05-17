@@ -49,9 +49,9 @@
             </button>
         </div>
         <div class="flex-grow gap-[20px]">
-            <h1 v-if="report3.carS || report3.carS != 0">{{ report3.carS }} nhỏ = {{ report3.carS*CAR.CAR_S }}</h1>
-            <h1 v-if="report3.carM || report3.carM != 0">{{ report3.carM }} trung = {{ report3.carM*CAR.CAR_M }}</h1>
-            <h1 v-if="report3.carL || report3.carL != 0">{{ report3.carL }} lớn = {{ report3.carL*CAR.CAR_L }}</h1>
+            <h1 v-if="report3.carS || report3.carS != 0">{{ report3.carS }} nhỏ = {{ report3.totalS }}</h1>
+            <h1 v-if="report3.carM || report3.carM != 0">{{ report3.carM }} trung = {{ report3.totalM }}</h1>
+            <h1 v-if="report3.carL || report3.carL != 0">{{ report3.carL }} lớn = {{ report3.totalL }}</h1>
             <div class="w-[20vw] h-1 mx-auto my-4 bg-black border-0 rounded"></div>
             <div ref="r2">
                 {{ date }}
@@ -150,6 +150,9 @@ onMounted(() => {
     let carS = 0
     let carM = 0
     let carL = 0
+    let totalS = 0
+    let totalM = 0
+    let totalL = 0
     let numPerson = 0
     let person = 0
     let percent = 0
@@ -165,6 +168,18 @@ onMounted(() => {
         carS += Number(group.value[k].carS)
         carM += Number(group.value[k].carM)
         carL += Number(group.value[k].carL)
+        if (group.value[k].typePerson == "V"){
+            totalS += Number(group.value[k].carS)*CAR_V.CAR_S
+            totalM += Number(group.value[k].carM)*CAR_V.CAR_M
+            totalL += Number(group.value[k].carL)*CAR_V.CAR_L
+        } else {
+            
+            totalS += Number(group.value[k].car7)*CAR_NN.CAR_7
+            totalS += Number(group.value[k].car16)*CAR_NN.CAR_16
+            totalM += Number(group.value[k].carM)*CAR_NN.CAR_29
+            totalL += Number(group.value[k].carL)*CAR_NN.CAR_45
+        }
+        
         if (group.value[k].car7 || group.value[k].car16){
             person = Number(group.value[k].person) > 10 ? Number(group.value[k].person) * Number(group.value[k].numPerson) : 10 *Number(group.value[k].numPerson)
         } else if (group.value[k].carM || group.value[k].carL){
@@ -175,7 +190,7 @@ onMounted(() => {
     totalz = percent + car + person
     report2.value = { numCar: numCar, car: formatNum(car), numPerson: formatNum(numPerson), person: formatNum(person), percent: formatNum(percent), total:  formatNum(totalz) }
     report1.value = report1.value.sort(customSort)
-    report3.value = { carS : carS, carM : carM, carL : carL}
+    report3.value = { carS : carS, totalS : totalS, carM : carM, totalM : totalM, carL : carL,totalL : totalL}
     return report1, report2, sum, report3
 })
 
