@@ -121,15 +121,15 @@ const total = computed(() => {
     if (props.typePerson == "V"){
         return Number(props.carS*CAR_V.CAR_S)+Number(props.carM*CAR_V.CAR_M)+Number(props.carL*CAR_V.CAR_L) + percent.value + pricePerson.value
     } else {
-        totalCar = Number(props.car7*CAR_NN.CAR_7) +Number(props.car16*CAR_NN.CAR_16) + Number(props.carM*CAR_NN.CAR_29) +  Number(props.carL*CAR_NN.CAR_45)
+        let totalCar = Number(props.car7*CAR_NN.CAR_7) +Number(props.car16*CAR_NN.CAR_16) + Number(props.carM*CAR_NN.CAR_29) +  Number(props.carL*CAR_NN.CAR_45)
         return totalCar + percent.value + pricePerson.value
     }
     
 })
-watch(props.car7, async (newValue, oldValue) => {
+watch(props.car7, async (newValue) => {
   emit('update:car16', props.carS - newValue)
 })
-watch(props.car16, async (newValue, oldValue) => {
+watch(props.car16, async (newValue) => {
   emit('update:car7', props.carS - newValue)
 })
 </script>
