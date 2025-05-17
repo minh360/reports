@@ -7,19 +7,19 @@
                     <h1>Bán lẻ :</h1>
                     <h1>Nước + Kem :</h1>
                     <h1>Cà Phê:</h1>
-                    <h1>Hạt Điều:</h1>
+                    <h1>Đặc sản:</h1>
                 </div>
                 <div class="flex flex-col  gap-[20px]">
                     <input v-model="banle" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
-                    <input v-model="dacsan" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+                    <input v-model="nuockem" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <input v-model="caphe" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
-                    <input v-model="hatdieu" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+                    <input v-model="dacsan" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 
                     focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                 </div>
@@ -38,9 +38,9 @@
                         </h1>
                     </div>
                     <h1 v-if="banle != ''">Bán lẻ = {{ formatNum(banle) }}</h1>
-                    <h1 v-if="dacsan != ''">Nước + Kem = {{ formatNum(dacsan) }}</h1>
+                    <h1 v-if="nuockem != ''">Nước + Kem = {{ formatNum(nuockem) }}</h1>
                     <h1 v-if="caphe != ''">Cà Phê = {{ formatNum(caphe) }}</h1>
-                    <h1 v-if="hatdieu != ''">Đặc sản = {{ formatNum(hatdieu) }}</h1>
+                    <h1 v-if="dacsan != ''">Đặc sản = {{ formatNum(dacsan) }}</h1>
                     <h1>Tổng z = {{ lumtien }}</h1>
             </div>
             <button @click="copy(1)" class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none 
@@ -74,10 +74,16 @@ import { onMounted, ref, computed } from 'vue';
 const ruleInfor = ref(JSON.parse(localStorage.getItem('ruleInfor')))
 const group = ref(JSON.parse(localStorage.getItem('group')))
 const rule = ref(JSON.parse(localStorage.getItem('rule')))
-const CAR = {
+const CAR_V = {
     CAR_S : 50,
     CAR_M : 70,
     CAR_L : 100
+}
+const CAR_NN = {
+    CAR_7 : 100,
+    CAR_16 : 130,
+    CAR_29 : 150,
+    CAR_45 : 180
 }
 const groupTq = ref([])
 const r1 = ref(null)
@@ -87,12 +93,12 @@ const mes2 = ref('Copy')
 const today = new Date()
 const date = String(today.getDate()) + '/' + String(today.getMonth() + 1) + '/' + String(today.getFullYear()) + " :"
 const banle = ref("")
-const dacsan = ref('')
+const nuockem = ref('')
 const caphe = ref('')
-const hatdieu = ref('')
+const dacsan = ref('')
 const sum = ref(0)
 const lumtien = computed(() => {
-    return formatNum(Number(dacsan.value) + Number(banle.value) + sum.value + Number(caphe.value)+ Number(hatdieu.value))
+    return formatNum(Number(nuockem.value) + Number(banle.value) + sum.value + Number(caphe.value)+ Number(dacsan.value))
 })
 const copy = num => {
     navigator.clipboard.writeText(num == 1 ? r1.value.innerText : r2.value.innerText)
@@ -149,13 +155,21 @@ onMounted(() => {
     let percent = 0
     let totalz = 0
     for (let k = 0; k < group.value.length; k++) {
-        car += (Number(group.value[k].carS*CAR.CAR_S)+Number(group.value[k].carM*CAR.CAR_M)+Number(group.value[k].carL*CAR.CAR_L))
+        if (group.value[k].typePerson == "V"){
+            car += (Number(group.value[k].carS*CAR_V.CAR_S)+Number(group.value[k].carM*CAR_V.CAR_M)+Number(group.value[k].carL*CAR_V.CAR_L))
+        } else {
+            totalCar = Number(group.value[k].car7*CAR_NN.CAR_7) +Number(group.value[k].car16*CAR_NN.CAR_16) + Number(group.value[k].carM*CAR_NN.CAR_29) +  Number(group.value[k].carL*CAR_NN.CAR_45)
+        }
         numCar += (Number(group.value[k].carS)+Number(group.value[k].carM)+Number(group.value[k].carL))
         numPerson += (Number(group.value[k].person) == 0 || group.value[k].numPerson == 0 ? 0 : Number(group.value[k].person))
         carS += Number(group.value[k].carS)
         carM += Number(group.value[k].carM)
         carL += Number(group.value[k].carL)
-        person += (group.value[k].numPerson * group.value[k].person)
+        if (group.value[k].car7 || group.value[k].car16){
+            person = Number(group.value[k].person) > 10 ? Number(group.value[k].person) * Number(group.value[k].numPerson) : 10 *Number(group.value[k].numPerson)
+        } else if (props.carM || props.carL){
+            person = Number(group.value[k].person) > 15 ? Number(group.value[k].person) * Number(group.value[k].numPerson) : 15 *Number(group.value[k].numPerson)
+        }
         percent += group.value[k].percent
     }
     totalz = percent + car + person

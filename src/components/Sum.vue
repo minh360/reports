@@ -26,6 +26,8 @@
                 :percent="item.percent" @update:percent="change(SELECT_ITEM.PERCENT, $event, index)"
                 :type-person="item.typePerson" @update:type-person="change(SELECT_ITEM.TYPE_PERSON, $event, index)"
                 :total-buy="item.totalBuy" @update:total-buy="change(SELECT_ITEM.TOTAL_BUY, $event, index)"
+                :car7="item.car7" @update:car6="change(SELECT_ITEM.TYPE_CAR, $event, index)" 
+                :car16="item.car16" @update:car16="change(SELECT_ITEM.TYPE_CAR, $event, index)" 
                 :index="index">
             </ShowPanel>
             </div>
@@ -53,7 +55,8 @@ const SELECT_ITEM = {
     PERCENT: 6,
     TYPE_PERSON: 7,
     TOTAL_BUY: 8,
-    DROPDOWN: 9
+    DROPDOWN: 9,
+    TYPE_CAR: 10,
 }
 const group = ref(JSON.parse(localStorage.getItem('group')) || [])
 const groupLength = computed(() => {
@@ -101,6 +104,11 @@ const change = (select, value, index) => {
             break
         case SELECT_ITEM.DROPDOWN:
             group.value[index].dropdown = !group.value[index].dropdown;
+            break
+        case SELECT_ITEM.TYPE_CAR:
+            changeValue.value = true
+            group.value[index].car16 = !group.value[index].car16;
+            group.value[index].car7= !group.value[index].car7;
             break
         }
     }

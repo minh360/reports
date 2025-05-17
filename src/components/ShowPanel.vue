@@ -26,7 +26,16 @@
                         @input="emit('update:carL', $event.target.value)" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <span>Lớn</span>
-
+                </div>
+                <div class="flex items-baseline" v-if="props.carM > 0 && props.typePerson!='V'">
+                    <input :value="props.car7"
+                        @input="emit('update:car7', $event.target.value)" type="checkbox"
+                        class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none mr-[20px] w-[75px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
+                    7 chỗ
+                    <input :value="props.car16"
+                        @input="emit('update:car16', $event.target.value)" type="checkbox"
+                        class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
+                    16 chỗ
                 </div>
                 <div class="flex items-baseline">
                     <input :value="props.person"
@@ -72,17 +81,23 @@
         <slot></slot>
 </template>
 <script setup>
-import { defineProps,defineEmits,computed,ref } from 'vue';
-const props = defineProps(['label','carS','carM','carL','card','person','numPerson','numCar','totalBuy','typePerson','percent','index','dropdown'])
-const emit = defineEmits(['update:carS','update:carM','update:carL','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent','update:dropdown'])
+import { defineProps,defineEmits,computed,ref,watch } from 'vue';
+const props = defineProps(['label','carS','carM','carL','car7','car16','card','person','numPerson','numCar','totalBuy','typePerson','percent','index','dropdown'])
+const emit = defineEmits(['update:carS','update:carM','update:carL','update:car7','update:car16','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent','update:dropdown'])
 
 const percentTx = ref('')
 const percentHd = ref('')
 const percentTd = ref('')
-const CAR = {
+const CAR_V = {
     CAR_S : 50,
     CAR_M : 70,
     CAR_L : 100
+}
+const CAR_NN = {
+    CAR_7 : 100,
+    CAR_16 : 130,
+    CAR_29 : 150,
+    CAR_45 : 180
 }
 const percent = computed (()=>{
     const newPercent = Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value)
@@ -90,10 +105,32 @@ const percent = computed (()=>{
     return newPercent
 })
 const pricePerson = computed(()=>{
-    return Number(props.person)*Number(props.numPerson)
+    if (props.typePerson == "V"){
+        return Number(props.person)*Number(props.numPerson)
+    } else {
+        let total = 0
+        if (props.car7 || props.car16){
+            total = Number(props.person) > 10 ? Number(props.person) * Number(props.numPerson) : 10 *Number(props.numPerson)
+        } else if (props.carM || props.carL){
+            total = Number(props.person) > 15 ? Number(props.person) * Number(props.numPerson) : 15 *Number(props.numPerson)
+        }
+        return total
+    }
 })
 const total = computed(() => {
-    return Number(props.carS*CAR.CAR_S)+Number(props.carM*CAR.CAR_M)+Number(props.carL*CAR.CAR_L) + percent.value + pricePerson.value
+    if (props.typePerson == "V"){
+        return Number(props.carS*CAR_V.CAR_S)+Number(props.carM*CAR_V.CAR_M)+Number(props.carL*CAR_V.CAR_L) + percent.value + pricePerson.value
+    } else {
+        totalCar = Number(props.car7*CAR_NN.CAR_7) +Number(props.car16*CAR_NN.CAR_16) + Number(props.carM*CAR_NN.CAR_29) +  Number(props.carL*CAR_NN.CAR_45)
+        return totalCar + percent.value + pricePerson.value
+    }
+    
+})
+watch(props.car7, async (newValue, oldValue) => {
+  emit('update:car16', props.carS - newValue)
+})
+watch(props.car16, async (newValue, oldValue) => {
+  emit('update:car7', props.carS - newValue)
 })
 </script>
 <style>
