@@ -2,7 +2,7 @@
         <h1 class="w-full text-[45px] flex justify-center text-[green] cursor-pointer hover:text-[red]" @click="emit('update:dropdown')">
             {{ props.label }}
         </h1>
-        <div class="flex flex-row gap-[90px] h-[700px] " v-if="props.dropdown=='' ? props.dropdown : true">
+        <div class="flex flex-row gap-[90px] h-[750px] " v-if="props.dropdown=='' ? props.dropdown : true">
             <div class="flex flex-col gap-[25px]">
                 <div>
                     Thẻ :
@@ -27,16 +27,15 @@
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <span>Lớn</span>
                 </div>
-                <div class="flex items-baseline" v-if="Number(props.carS) > 0 && props.typePerson!='V'">
+                <div class="flex items-baseline mt-[10px]" v-if="Number(props.carS) > 0 && props.typePerson!='V'">
                     <input :value="props.car7"
                         @input="emit('update:car7', $event.target.value)" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none mr-[20px] w-[75px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
-                    7 chỗ
+                    <span>7 chỗ</span>
                     <input :value="props.car16"
                         @input="emit('update:car16', $event.target.value)" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
-                    16 chỗ
-                    
+                    <span>16 chỗ</span>
                 </div>
                 <div class="flex items-baseline">
                     <p class="text-[red] text-[18px]" v-if="(props.carS && (props.carL || props.carM)) && props.typePerson != 'V'">Phiên bản này chưa hỗ trợ gộp đoàn xe lớn + nhỏ ngoài khách Việt</p>
