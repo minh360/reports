@@ -36,7 +36,10 @@
                         @input="emit('update:car16', $event.target.value)" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     16 chỗ
-                    <p class="text-[red]" v-if="(props.carS && (props.carL || props.carM)) && props.typePerson != 'V'">Phiên bản này chưa hỗ trợ gộp đoàn xe lớn + nhỏ</p>
+                    
+                </div>
+                <div class="flex items-baseline">
+                    <p class="text-[red] text-[18px]" v-if="(props.carS && (props.carL || props.carM)) && props.typePerson != 'V'">Phiên bản này chưa hỗ trợ gộp đoàn xe lớn + nhỏ</p>
                 </div>
                 <div class="flex items-baseline">
                     <input :value="props.person"
