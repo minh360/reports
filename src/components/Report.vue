@@ -158,11 +158,11 @@ onMounted(() => {
     let percent = 0
     let totalz = 0
     for (let k = 0; k < group.value.length; k++) {
-        if (group.value[k].typePerson == "V"){
-            car += (Number(group.value[k].carS*CAR_V.CAR_S)+Number(group.value[k].carM*CAR_V.CAR_M)+Number(group.value[k].carL*CAR_V.CAR_L))
-        } else {
-            car += Number(group.value[k].car7*CAR_NN.CAR_7) +Number(group.value[k].car16*CAR_NN.CAR_16) + Number(group.value[k].carM*CAR_NN.CAR_29) +  Number(group.value[k].carL*CAR_NN.CAR_45)
-        }
+        // if (group.value[k].typePerson == "V"){
+        //     car += (Number(group.value[k].carS*CAR_V.CAR_S)+Number(group.value[k].carM*CAR_V.CAR_M)+Number(group.value[k].carL*CAR_V.CAR_L))
+        // } else {
+        //     car += Number(group.value[k].car7*CAR_NN.CAR_7) +Number(group.value[k].car16*CAR_NN.CAR_16) + Number(group.value[k].carM*CAR_NN.CAR_29) +  Number(group.value[k].carL*CAR_NN.CAR_45)
+        // }
         numCar += (Number(group.value[k].carS)+Number(group.value[k].carM)+Number(group.value[k].carL))
         numPerson += (Number(group.value[k].person) == 0 || group.value[k].numPerson == 0 ? 0 : Number(group.value[k].person))
         carS += Number(group.value[k].carS)
@@ -187,6 +187,7 @@ onMounted(() => {
         }
         percent += group.value[k].percent
     }
+    car = totalS + totalM + totalL
     totalz = percent + car + person
     report2.value = { numCar: numCar, car: formatNum(car), numPerson: formatNum(numPerson), person: formatNum(person), percent: formatNum(percent), total:  formatNum(totalz) }
     report1.value = report1.value.sort(customSort)
