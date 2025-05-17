@@ -46,7 +46,7 @@ const CAR_NN = {
 const saveAdd = () => {
     let a = localStorage.getItem('group') ? JSON.parse(localStorage.getItem('group')) : []
     let totalCar = 0
-    if (typePerson == "V"){
+    if (typePerson.value == "V"){
         totalCar = Number(carS.value ? carS.value*CAR_V.CAR_S : 0)+Number(carM.value ? carM.value*CAR_V.CAR_M : 0)+Number(carL.value ? carL.value*CAR_V.CAR_L : 0)
     } else {
         totalCar = Number(carS.value ? Number(car7.value*CAR_NN.CAR_7) + Number(car16.value*CAR_NN.CAR_16) : 0)+Number(carM.value ? Number(carM.value*CAR_NN.CAR_29) : 0)+Number(carL.value ?  Number(carL.value*CAR_NN.CAR_45) : 0)
