@@ -39,7 +39,7 @@
                     
                 </div>
                 <div class="flex items-baseline">
-                    <p class="text-[red] text-[18px]" v-if="(props.carS && (props.carL || props.carM)) && props.typePerson != 'V'">Phiên bản này chưa hỗ trợ gộp đoàn xe lớn + nhỏ</p>
+                    <p class="text-[red] text-[18px]" v-if="(props.carS && (props.carL || props.carM)) && props.typePerson != 'V'">Phiên bản này chưa hỗ trợ gộp đoàn xe lớn + nhỏ ngoài khách Việt</p>
                 </div>
                 <div class="flex items-baseline">
                     <input :value="props.person"
