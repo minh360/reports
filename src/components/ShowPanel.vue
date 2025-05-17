@@ -2,7 +2,7 @@
         <h1 class="w-full text-[45px] flex justify-center text-[green] cursor-pointer hover:text-[red]" @click="emit('update:dropdown')">
             {{ props.label }}
         </h1>
-        <div class="flex flex-row gap-[90px] h-[650px] " v-if="props.dropdown=='' ? props.dropdown : true">
+        <div class="flex flex-row gap-[90px] h-[700px] " v-if="props.dropdown=='' ? props.dropdown : true">
             <div class="flex flex-col gap-[25px]">
                 <div>
                     Thẻ :
