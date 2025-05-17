@@ -27,7 +27,7 @@
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <span>Lớn</span>
                 </div>
-                <div class="flex items-baseline" v-if="props.carM > 0 && props.typePerson!='V'">
+                <div class="flex items-baseline" v-if="props.carS > 0 && props.typePerson!='V'">
                     <input :value="props.car7"
                         @input="emit('update:car7', $event.target.value)" type="checkbox"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none mr-[20px] w-[75px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
