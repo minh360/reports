@@ -179,12 +179,16 @@ onMounted(() => {
             totalM += Number(group.value[k].carM)*CAR_NN.CAR_29
             totalL += Number(group.value[k].carL)*CAR_NN.CAR_45
         }
-        
-        if (group.value[k].car7 || group.value[k].car16){
-            person += Number(group.value[k].person) > 10 ? Number(group.value[k].person) * Number(group.value[k].numPerson) : 10 *Number(group.value[k].numPerson)
-        } else if (group.value[k].carM || group.value[k].carL){
-            person += Number(group.value[k].person) > 15 ? Number(group.value[k].person) * Number(group.value[k].numPerson) : 15 *Number(group.value[k].numPerson)
+        if (group.value[k].typePerson != "V"){
+            if (group.value[k].car7 || group.value[k].car16){
+                person += Number(group.value[k].person) > 10 ? Number(group.value[k].person) * Number(group.value[k].numPerson) : 10 *Number(group.value[k].numPerson)
+            } else if (group.value[k].carM || group.value[k].carL){
+                person += Number(group.value[k].person) > 15 ? Number(group.value[k].person) * Number(group.value[k].numPerson) : 15 *Number(group.value[k].numPerson)
+            }
+        } else {
+            person += Number(group.value[k].person)*Number(group.value[k].numPerson)
         }
+        
         percent += group.value[k].percent
     }
     car = totalS + totalM + totalL
