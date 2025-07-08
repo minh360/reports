@@ -7,32 +7,32 @@
                 <div>
                     Thẻ :
                     <input
-                        :value="props.card"
+                        :value="props.card" :ref="cardInput" @keyup.enter="focusNext(1)"
                         @input="emit('update:card', $event.target.value)"
                         type="text" 
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[300px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                 </div>
                 <div>
                     <span>Xe :</span>
-                    <input :value="props.carS"
+                    <input :value="props.carS" :ref="carSInput" @keyup.enter="focusNext(3)"
                         @input="emit('update:carS', $event.target.value)" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <span>Nhỏ</span>
-                    <input :value="props.carM"
+                    <input :value="props.carM" :ref="carMInput" @keyup.enter="focusNext(4)"
                         @input="emit('update:carM', $event.target.value)" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <span>Trung</span>
-                    <input :value="props.carL"
+                    <input :value="props.carL" :ref="carLInput" @keyup.enter="focusNext(5)"
                         @input="emit('update:carL', $event.target.value)" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <span>Lớn</span>
                 </div>
                 <div class="flex items-baseline" v-if="Number(props.carS) > 0 && props.typePerson!='V'">
-                    <input :value="props.car7"
+                    <input :value="props.car7" :ref="car7Input" @keyup.enter="focusNext(6)"
                         @input="emit('update:car7', $event.target.value)" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none mr-[20px] w-[75px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <span>7 chỗ</span>
-                    <input :value="props.car16"
+                    <input :value="props.car16" :ref="car16Input" @keyup.enter="focusNext(7)"
                         @input="emit('update:car16', $event.target.value)" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[10px] pl-[10px] w-[60px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     <span>16 chỗ</span>
@@ -41,7 +41,7 @@
                     <p class="text-[red] text-[18px]">Phiên bản này chưa hỗ trợ gộp đoàn xe lớn + nhỏ ngoài khách Việt</p>
                 </div>
                 <div class="flex items-baseline">
-                    <input :value="props.person"
+                    <input :value="props.person" :ref="personInput" @keyup.enter="focusNext(8)"
                         @input="emit('update:person', $event.target.value)" type="number"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none mr-[20px] w-[75px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     Người : x
@@ -52,13 +52,13 @@
                 </div>
                 <div class='flex flex-col gap-[25px]'>
                     <p>Phần trăm : {{ props.percent }} </p>
-                    <p>Tx : <input v-model="percentTx" type="number"
+                    <p>Tx : <input v-model="percentTx" type="number" :ref="percentTxInput" @keyup.enter="focusNext(9)"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[120px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     </p>
-                    <p>Hd : <input v-model="percentHd" type="number"
+                    <p>Hd : <input v-model="percentHd" type="number" :ref="percentHdInput" @keyup.enter="focusNext(10)"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[120px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     </p>
-                    <p>Td : <input v-model="percentTd" type="number"
+                    <p>Td : <input v-model="percentTd" type="number" :ref="percentTdInput" @keyup.enter="focusNext(11)"
                         class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] w-[120px] h-[50px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                     </p>
                 </div>
@@ -69,13 +69,13 @@
             <div class="flex flex-col justify-end flex-grow-1 ">
                 <div class="flex flex-row items-baseline">
                     Khách
-                    <input :value="props.typePerson"
+                    <input :value="props.typePerson" :ref="typePersonInput" @keyup.enter="focusNext(2)"
                         @input="emit('update:typePerson', $event.target.value)" type="text"
                         class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] pl-[10px] w-[150px] h-[70px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                 </div>
                 <div class="flex flex-grow justify-center items-center">
                     Tổng mua : 
-                    <input :value="props.totalBuy"
+                    <input :value="props.totalBuy" :ref="totalBuyInput"
                         @input="emit('update:totalBuy', $event.target.value)" type="number"
                         class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ml-[20px] pl-[10px] w-[150px] h-[60px] rounded border border-2 focus:outline-none focus:ring focus:border-blue-300 bg-black-300" />
                 </div>
@@ -84,9 +84,24 @@
         <slot></slot>
 </template>
 <script setup>
-import { defineProps,defineEmits,computed,ref,watch } from 'vue';
+import { defineProps,defineEmits,computed,ref,watch,onMounted } from 'vue';
 const props = defineProps(['label','carS','carM','carL','car7','car16','card','person','numPerson','numCar','totalBuy','typePerson','percent','index','dropdown'])
 const emit = defineEmits(['update:carS','update:carM','update:carL','update:car7','update:car16','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent','update:dropdown'])
+
+const cardInput = ref('')
+const typePersonInput = ref('')
+const carSInput = ref('')
+const carMInput = ref('')
+const carLInput = ref('')
+const car7Input = ref('')
+const car16Input = ref('')
+const personInput = ref('')
+const percentTxInput = ref('')
+const percentHdInput = ref('')
+const percentTdInput = ref('')
+const totalBuyInput = ref('')
+
+
 
 const percentTx = ref('')
 const percentHd = ref('')
@@ -102,6 +117,50 @@ const CAR_NN = {
     CAR_29 : 150,
     CAR_45 : 180
 }
+
+const focusNext = num => {
+    if (num == 5 && props.carS > 0 && props.typePerson != 'V'){
+        num = 6
+    } else {
+        num = 8
+    }
+    switch (num){
+        case 1:
+            typePersonInput.value?.focus()
+            break
+        case 2:
+            carSInput.value?.focus()
+            break
+        case 3:
+            carMInput.value?.focus()
+            break
+        case 4:
+            carLInput.value?.focus()
+            break
+        case 5:
+            car7Input.value?.focus()
+            break
+        case 6:
+            car16Input.value?.focus()
+            break
+        case 7:
+            personInput.value?.focus()
+            break
+        case 8:
+            percentTxInput.value?.focus()
+            break
+        case 9:
+            percentHdInput.value?.focus()
+            break
+        case 10:
+            percentTdInput.value?.focus()
+            break
+        case 11:
+            totalBuyInput.value?.focus()
+            break
+    }
+}
+
 const percent = computed (()=>{
     const newPercent = Number(percentTx.value)+Number(percentHd.value)+Number(percentTd.value)
     emit('update:percent', newPercent)
@@ -134,6 +193,9 @@ watch(props.car7, async (newValue) => {
 })
 watch(props.car16, async (newValue) => {
   emit('update:car7', props.carS - newValue)
+})
+onMounted(() => {
+  cardInput.value.focus()
 })
 </script>
 <style>
