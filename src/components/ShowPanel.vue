@@ -195,6 +195,7 @@ watch(props.car16, async (newValue) => {
   emit('update:car7', props.carS - newValue)
 })
 onMounted(() => {
+    console.log('cardInput:', cardInput.value)
   cardInput.value?.focus()
 })
 </script>
