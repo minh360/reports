@@ -88,21 +88,6 @@ import { defineProps,defineEmits,computed,ref,watch,onMounted } from 'vue';
 const props = defineProps(['label','carS','carM','carL','car7','car16','card','person','numPerson','numCar','totalBuy','typePerson','percent','index','dropdown'])
 const emit = defineEmits(['update:carS','update:carM','update:carL','update:car7','update:car16','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent','update:dropdown'])
 
-const cardInput = ref(null)
-const typePersonInput = ref(null)
-const carSInput = ref(null)
-const carMInput = ref(null)
-const carLInput = ref(null)
-const car7Input = ref(null)
-const car16Input = ref(null)
-const personInput = ref(null)
-const percentTxInput = ref(null)
-const percentHdInput = ref(null)
-const percentTdInput = ref(null)
-const totalBuyInput = ref(null)
-
-
-
 const percentTx = ref('')
 const percentHd = ref('')
 const percentTd = ref('')
