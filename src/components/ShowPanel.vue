@@ -195,7 +195,7 @@ watch(props.car16, async (newValue) => {
 onMounted(() => {
     nextTick(() => {
         cardInput.value.focus()
-    }
+    })
 })
 </script>
 <style>
