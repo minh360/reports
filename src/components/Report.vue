@@ -7,7 +7,7 @@
                     <h1>Bán lẻ :</h1>
                     <h1>Nước + Kem :</h1>
                     <h1>Cà Phê:</h1>
-                    <h1>Đặc sản:</h1>
+                    <h1>Bánh kẹo:</h1>
                 </div>
                 <div class="flex flex-col  gap-[20px]">
                     <input v-model="banle" type="number" class="pl-[10px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
@@ -40,7 +40,7 @@
                     <h1 v-if="banle != ''">Bán lẻ = {{ formatNum(banle) }}</h1>
                     <h1 v-if="nuockem != ''">Nước + Kem = {{ formatNum(nuockem) }}</h1>
                     <h1 v-if="caphe != ''">Cà Phê = {{ formatNum(caphe) }}</h1>
-                    <h1 v-if="dacsan != ''">Đặc sản = {{ formatNum(dacsan) }}</h1>
+                    <h1 v-if="dacsan != ''">Bánh kẹo = {{ formatNum(dacsan) }}</h1>
                     <h1>Tổng z = {{ lumtien }}</h1>
             </div>
             <button @click="copy(1)" class="rounded border border-4 px-[20px] my-[40px] flex items-center hover:outline-none 
