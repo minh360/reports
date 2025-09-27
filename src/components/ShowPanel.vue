@@ -84,7 +84,7 @@
         <slot></slot>
 </template>
 <script setup>
-import { defineProps,defineEmits,computed,ref,watch,onMounted,nextTick  } from 'vue';
+import { defineProps,defineEmits,computed,ref,watch} from 'vue';
 const props = defineProps(['label','carS','carM','carL','car7','car16','card','person','numPerson','numCar','totalBuy','typePerson','percent','index','dropdown'])
 const emit = defineEmits(['update:carS','update:carM','update:carL','update:car7','update:car16','update:card','update:person','update:numPerson','update:numCar','update:totalBuy','update:typePerson','update:percent','update:dropdown'])
 
